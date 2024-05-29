@@ -4,24 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currency Converter</title>
+  <style>
+    .form-group {
+      display: flex; /* Make the group a flexbox container */
+      justify-content: space-between; /* Equally distribute content horizontally */
+      margin-bottom: 10px; /* Add some space between groups */
+    }
+    .form-group label {
+      width: 120px; /* Set width for labels */
+      text-align: right; /* Align labels to the right */
+    }
+    .convert-button {
+      background-color: #6A0DAD; /* Use a lighter gray for a duller effect */
+      color: white; /* Set text color to white for better readability */
+      padding: 10px 20px; /* Add some padding for visual balance */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Add a slight rounded corner effect */
+      font-weight: bold; /* Make text bold for emphasis */
+      cursor: pointer; /* Set cursor to pointer on hover */
+    }
+    .convert-button:active { /* Style for button on click */
+      background-color: #9932CC; /* Darken slightly on click */
+      transform: translateY(2px); /* Move button down slightly on click */
+      transition: all 0.1s ease-in-out; /* Smooth transition for click effect */
+    }
+    h1 {
+      text-align: center; /* Center align the heading */
+      color: #4D1A78;
+    }
+  </style>
 </head>
-<body style="background: linear-gradient(to right, #3333cc, #ff99ff); display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; margin: 0;">
+<body style="background: linear-gradient(to right, #222299, #ff99ff); display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; margin: 0;">
   <main class="converter" style="background-color: rgba(228, 211, 233, 0.8); border-radius: 10px; padding: 20px;">
     <h1>Currency Converter</h1>
     <form method="POST" action="/convert">
       <fieldset>
-        <label for="base_currency">Base Currency:</label>
-        <input type="text" id="base_currency" name="base_currency" >
-        <br>
-        <label for="convert_to">Convert To:</label>
-        <input type="text" id="convert_to" name="convert_to"  >
-        <br>
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" >
-        <br>
+        <div class="form-group">
+          <label for="base_currency">Base Currency:</label>
+          <select id="base_currency" name="base_currency">
+            <option value="USD">USD (US Dollar)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="JPY">JPY (Japanese Yen)</option>
+            <option value="BGN">BGN (Bulgarian Lev)</option>
+            <option value="CZK">CZK (Czech Republic Koruna)</option>
+            <option value="DKK">DKK (Danish Krone)</option>
+            <option value="GBP">GBP (British Pound Sterling)</option>
+            <option value="HUF">HUF (Hungarian Forint)</option>
+            <option value="PLN">PLN (Polish Zloty)</option>
+            <option value="RON">RON (Romanian Leu)</option>
+            <option value="SEK">SEK (Swedish Krona)</option>
+            <option value="CHF">CHF (Swiss Franc)</option>
+            <option value="ISK">ISK (Icelandic Króna)</option>
+            <option value="NOK">NOK (Norwegian Krone)</option>
+            <option value="HRK">HRK (Croatian Kuna)</option>
+            <option value="RUB">RUB (Russian Ruble)</option>
+            <option value="TRY">TRY (Turkish Lira)</option>
+            <option value="AUD">AUD (Australian Dollar)</option>
+            <option value="BRL">BRL (Brazilian Real)</option>
+            <option value="CAD">CAD (Canadian Dollar)</option>
+            <option value="CNY">CNY (Chinese Yuan)</option>
+            <option value="HKD">HKD (Hong Kong Dollar)</option>
+            <option value="IDR">IDR (Indonesian Rupiah)</option>
+            <option value="ILS">ILS (Israeli New Sheqel)</option>
+            <option value="INR">INR (Indian Rupee)</option>
+            <option value="KRW">KRW (South Korean Won)</option>
+            <option value="MXN">MXN (Mexican Peso)</option>
+            <option value="MYR">MYR (Malaysian Ringgit)</option>
+            <option value="NZD">NZD (New Zealand Dollar)</option>
+            <option value="PHP">PHP (Philippine Peso)</option>
+            <option value="SGD">SGD (Singapore Dollar)</option>
+            <option value="THB">THB (Thai Baht)</option>
+            <option value="ZAR">ZAR (South African Rand)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="convert_to">Convert To:</label>
+          <select id="convert_to" name="convert_to">
+            <option value="INR">INR (Indian Rupee)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="USD">USD (US Dollar)</option>
+            <option value="JPY">JPY (Japanese Yen)</option>
+            <option value="BGN">BGN (Bulgarian Lev)</option>
+            <option value="CZK">CZK (Czech Republic Koruna)</option>
+            <option value="DKK">DKK (Danish Krone)</option>
+            <option value="GBP">GBP (British Pound Sterling)</option>
+            <option value="HUF">HUF (Hungarian Forint)</option>
+            <option value="PLN">PLN (Polish Zloty)</option>
+            <option value="RON">RON (Romanian Leu)</option>
+            <option value="SEK">SEK (Swedish Krona)</option>
+            <option value="CHF">CHF (Swiss Franc)</option>
+            <option value="ISK">ISK (Icelandic Króna)</option>
+            <option value="NOK">NOK (Norwegian Krone)</option>
+            <option value="HRK">HRK (Croatian Kuna)</option>
+            <option value="RUB">RUB (Russian Ruble)</option>
+            <option value="TRY">TRY (Turkish Lira)</option>
+            <option value="AUD">AUD (Australian Dollar)</option>
+            <option value="BRL">BRL (Brazilian Real)</option>
+            <option value="CAD">CAD (Canadian Dollar)</option>
+            <option value="CNY">CNY (Chinese Yuan)</option>
+            <option value="HKD">HKD (Hong Kong Dollar)</option>
+            <option value="IDR">IDR (Indonesian Rupiah)</option>
+            <option value="ILS">ILS (Israeli New Sheqel)</option>
+            <option value="KRW">KRW (South Korean Won)</option>
+            <option value="MXN">MXN (Mexican Peso)</option>
+            <option value="MYR">MYR (Malaysian Ringgit)</option>
+            <option value="NZD">NZD (New Zealand Dollar)</option>
+            <option value="PHP">PHP (Philippine Peso)</option>
+            <option value="SGD">SGD (Singapore Dollar)</option>
+            <option value="THB">THB (Thai Baht)</option>
+            <option value="ZAR">ZAR (South African Rand)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" min="0" onblur="validateAmount()">
+        </div>
       </fieldset>
-      <button type="submit">Convert</button>
+      <div style="text-align: center;">
+        <button type="submit" class="convert-button">Convert</button>
+      </div>
     </form>
-  </main>
-</body>
-</html>
+    <script>
+      function validateAmount() {
+        var amountInput = document.getElementById("amount");
+        var amountValue = parseFloat(amountInput.value);
+        if (amountValue < 0) {
+          amountInput.value = ""; // Clear the input if negative
+          alert("Please enter a non-negative amount.");
+        }
+      }
+    </script
+

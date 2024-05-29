@@ -37,9 +37,10 @@ def convert_currency(cur1,cur2,value):
    #endpoint = f"/v1/latest?apikey={API_KEY}&currencies={cur2}&base_currency={cur1}"
    conversion = exchange_rate(cur1,cur2)
    product = conversion * float(value)
+   rounded_product = round(product,2)
    print(f"{value} {cur1} is equal to {product} {cur2}")
    print("----------------------------------------------")
-   return product
+   return rounded_product
 def main(): 
  while True:
     choice = input("Enter a command (q to quit): ").lower()
